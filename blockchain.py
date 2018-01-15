@@ -1,6 +1,7 @@
 import hashlib
 import json
 from time import time
+import sys
 
 class Blockchain(object):
     def __init__(self):
@@ -10,8 +11,8 @@ class Blockchain(object):
          # Create the genesis block
         self.new_block(previous_hash=1, proof=100)
 
-    def new_block(self):
-      """
+    def new_block(self, previous_hash, proof):
+        """
         Create a new Block in the Blockchain
 
         :param proof: <int> The proof given by the Proof of Work algorithm
