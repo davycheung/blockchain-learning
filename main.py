@@ -1,14 +1,14 @@
 from blockchain import Blockchain
 
-bc = Blockchain()
-# bc.new_transaction('Dave', 'Sammy', 30)
+class BlockchainClient(object):
 
-last_proof = 72608
-proof = last_proof + 1
-while True:
-    guess = bc.valid_proof(last_proof, proof)
-    if guess[:4] == "0000":
-        print(str(proof) + ": " + guess)
-        break
+    def __init__(self):
+        self.bc = Blockchain()
 
-    proof = proof + 1
+    def mine(self):
+        last_proof = self.bc.last_block['proof']
+        return self.bc.proof_of_work(last_proof)
+
+client = BlockchainClient()
+proof = client.mine()
+print(proof)
